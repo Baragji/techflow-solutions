@@ -1,0 +1,17 @@
+{
+  "name": "@techrix/services",
+  "version": "1.0.0",
+  "description": "TechRix Services component - professional service cards with icons",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "scripts": {
+    "dev": "echo 'Services component ready for development'",
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": ["services", "component", "techrix", "icons"],
+  "author": "TechRix",
+  "license": "MIT"
+}

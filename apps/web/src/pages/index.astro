@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { render as renderNavigation } from '../../../../packages/navigation/src/index.js';
 import { render as renderHero } from '../../../../packages/hero/src/index.js';
+import { render as renderServices } from '../../../../packages/services/src/index.js';
 
 // Component data
 const navigationData = {
@@ -20,6 +21,10 @@ const heroData = {
   subtitle: "Lad os accelerere din digitale transformation",
   description: "Vi skaber digitale løsninger der ikke bare ser godt ud – de leverer målbare resultater. Fra apps der engagerer til hjemmesider der konverterer og automatisering der sparer tid."
 };
+
+const servicesData = {
+  // Uses default services from component
+};
 ---
 
 <Layout title="TechRix - Digitale Løsninger Der Virker">
@@ -30,14 +35,7 @@ const heroData = {
       <Fragment set:html={renderHero(heroData)} />
     </section>
     
-    <section id="services" class="section-padding" style="background: var(--obsidian-darker);">
-      <div class="container">
-        <h2 style="text-align: center; font-size: var(--font-size-5xl); margin-bottom: var(--space-8); color: var(--color-neutral-000);">Vores Services</h2>
-        <p style="text-align: center; font-size: var(--font-size-xl); color: rgba(255, 255, 255, 0.7);">
-          Kommer snart - Services komponenten er under udvikling
-        </p>
-      </div>
-    </section>
+    <Fragment set:html={renderServices(servicesData)} />
     
     <section id="about" class="section-padding" style="background: var(--obsidian-dark);">
       <div class="container">
