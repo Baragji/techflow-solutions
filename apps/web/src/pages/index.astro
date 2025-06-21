@@ -6,20 +6,21 @@ import { render as renderServices } from '../../../../packages/services/src/inde
 
 // Component data
 const navigationData = {
-  logo: "TechRix",
+  logo: "TechFlow Solutions",
   links: [
-    { href: "#home", text: "Hjem" },
-    { href: "#services", text: "Services" },
+    { href: "#home", text: "Forside" },
     { href: "#about", text: "Om os" },
+    { href: "#services", text: "Services" },
+    { href: "#portfolio", text: "Portfolio" },
     { href: "#contact", text: "Kontakt" }
   ]
 };
 
 const heroData = {
-  title: "Du",
-  highlights: ["kunne", "vokse", "lige", "nu"],
-  subtitle: "Lad os accelerere din digitale transformation",
-  description: "Vi skaber digitale løsninger der ikke bare ser godt ud – de leverer målbare resultater. Fra apps der engagerer til hjemmesider der konverterer og automatisering der sparer tid."
+  title: "Hvor",
+  highlights: ["ambition", "møder", "ekspertise"],
+  subtitle: "Vi transformerer digitale muligheder til målbare forretningsresultater",
+  description: "Gennem strategisk digital markedsføring og datadriven indsigt hjælper vi virksomheder med at opnå bæredygtig vækst."
 };
 
 const servicesData = {
@@ -27,7 +28,7 @@ const servicesData = {
 };
 ---
 
-<Layout title="TechRix - Digitale Løsninger Der Virker">
+<Layout title="TechFlow Solutions - Digitale Løsninger Der Virker">
   <Fragment set:html={renderNavigation(navigationData)} />
   
   <main>

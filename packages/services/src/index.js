@@ -194,7 +194,7 @@ export function render({
           left: 25%;
           width: 24rem;
           height: 24rem;
-          background: rgba(59, 130, 246, 0.05);
+          background: rgba(255, 255, 255, 0.02);
           animation: float 12s ease-in-out infinite;
         }
         
@@ -203,7 +203,7 @@ export function render({
           right: 25%;
           width: 24rem;
           height: 24rem;
-          background: rgba(139, 92, 246, 0.05);
+          background: rgba(255, 255, 255, 0.02);
           animation: float 15s ease-in-out infinite reverse;
         }
         
@@ -254,7 +254,7 @@ export function render({
         
         .services__title-gradient {
           display: block;
-          background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-green));
+          background: linear-gradient(135deg, var(--color-neutral-000), var(--accent-green), var(--color-neutral-100));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -271,77 +271,44 @@ export function render({
           animation: slideInScale 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s forwards;
         }
         
-        /* Services Grid */
+        /* Services Grid - Fixed layout */
         .services__grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-          gap: var(--space-8);
-          max-width: 84rem;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 2rem;
+          max-width: 1200px;
           margin: 0 auto var(--space-16);
+          padding: 0 var(--space-4);
         }
         
-        /* Service Cards */
+        /* Service Cards - Clean and readable */
         .service-card {
           position: relative;
-          background: rgba(255, 255, 255, 0.05);
-          backdrop-filter: blur(var(--blur-md));
+          background: rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(12px);
           border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: var(--radius-2xl);
-          padding: var(--space-8);
-          transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          border-radius: 16px;
+          padding: 2rem;
+          transition: all 0.3s ease;
           overflow: hidden;
           opacity: 0;
           transform: translateY(40px);
           animation: slideInScale 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
         
-        .service-card::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          border-radius: var(--radius-2xl);
-          padding: 1px;
-          background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(59,130,246,0.2), rgba(139,92,246,0.2));
-          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          mask-composite: xor;
-          opacity: 0;
-          transition: opacity 0.4s ease;
-        }
-        
-        .service-card:hover::before {
-          opacity: 1;
-        }
+        /* Removed problematic border gradient effects */
         
         .service-card:hover {
-          transform: translateY(-12px) scale(1.03);
-          border-color: rgba(255, 255, 255, 0.25);
-          background: rgba(255, 255, 255, 0.12);
-          box-shadow: 
-            0 25px 50px rgba(0, 0, 0, 0.4),
-            0 0 0 1px rgba(255, 255, 255, 0.1),
-            inset 0 1px 0 rgba(255, 255, 255, 0.2);
-          backdrop-filter: blur(25px) saturate(180%);
+          transform: translateY(-8px);
+          border-color: rgba(255, 255, 255, 0.2);
+          background: rgba(255, 255, 255, 0.08);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+          backdrop-filter: blur(20px);
         }
         
-        /* Gradient Overlay - Enhanced shimmer effect */
+        /* Remove problematic shimmer and complex overlays */
         .service-card__gradient {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-          opacity: 0;
-          transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-          border-radius: var(--radius-2xl);
-        }
-        
-        .service-card:hover .service-card__gradient {
-          opacity: 0.08;
-          animation: shimmer 2s ease-in-out infinite;
-        }
-        
-        /* Shimmer animation */
-        @keyframes shimmer {
-          0%, 100% { opacity: 0.08; }
-          50% { opacity: 0.15; }
+          display: none; /* Disable problematic gradient overlay */
         }
         
         /* Icon Container */
@@ -353,7 +320,7 @@ export function render({
         .service-card__icon {
           width: 4rem;
           height: 4rem;
-          background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
           border-radius: var(--radius-xl);
           display: flex;
           align-items: center;
@@ -370,48 +337,13 @@ export function render({
         }
         
         .service-card:hover .service-card__icon {
-          transform: scale(1.15) rotate(8deg);
-          box-shadow: 
-            0 20px 40px rgba(59, 130, 246, 0.6),
-            0 0 30px rgba(59, 130, 246, 0.4),
-            inset 0 1px 0 rgba(255, 255, 255, 0.3);
-          background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-green));
+          transform: scale(1.05);
+          box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
         }
         
-        /* Floating Particles */
+        /* Floating Particles - Simplified */
         .service-card__particle {
-          position: absolute;
-          width: 0.75rem;
-          height: 0.75rem;
-          background: var(--accent-blue);
-          border-radius: 50%;
-          opacity: 0;
-          transition: var(--transition-all);
-        }
-        
-        .service-card__particle--1 {
-          top: -0.5rem;
-          right: -0.5rem;
-          animation-delay: 0s;
-        }
-        
-        .service-card__particle--2 {
-          top: 1rem;
-          right: -1rem;
-          background: var(--accent-purple);
-          animation-delay: 0.2s;
-        }
-        
-        .service-card__particle--3 {
-          top: -1rem;
-          right: 1rem;
-          background: var(--accent-green);
-          animation-delay: 0.4s;
-        }
-        
-        .service-card:hover .service-card__particle {
-          opacity: 0.6;
-          animation: ping 2s infinite;
+          display: none; /* Disable problematic floating particles */
         }
         
         /* Content */
@@ -468,14 +400,14 @@ export function render({
         .service__feature-dot {
           width: 0.375rem;
           height: 0.375rem;
-          background: var(--accent-blue);
+          background: var(--accent-green);
           border-radius: 50%;
           margin-right: var(--space-2);
           transition: var(--transition-all);
         }
         
         .service-card:hover .service__feature-dot {
-          background: var(--accent-purple);
+          background: var(--color-neutral-000);
         }
         
         /* CTA Link */
