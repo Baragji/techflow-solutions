@@ -1,5 +1,43 @@
 /**
- * Navigation Component - TechRix Website v2.0
+ * Navigation Comp  return `
+    <nav class="nav" id="main-navigation">
+      <div class="nav__wrapper">
+        <!-- Left Navigation Group - Logo + Links -->
+        <div class="nav__group nav__group--left glass-nav">
+          <div class="nav__brand">
+            <a href="#home" class="nav__logo">${logo}</a>
+          </div>
+          
+          <div class="nav__links">
+            ${linksHtml}
+          </div>
+        </div>
+        
+        <!-- Right Navigation Group - Language + CTA -->
+        <div class="nav__group nav__group--right glass-nav">
+          <div class="nav__language">
+            <span class="nav__globe">🌐</span>
+            <span class="nav__arrow">▾</span>
+          </div>
+          
+          <div class="nav__divider"></div>
+          
+          <a href="#contact" class="nav__cta">Få et tilbud →</a>
+        </div>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation">
+          <span class="nav__toggle-line"></span>
+          <span class="nav__toggle-line"></span>
+          <span class="nav__toggle-line"></span>
+        </button>
+        
+        <!-- Mobile Menu -->
+        <div class="nav__mobile-menu glass-nav" id="nav-menu">
+          ${linksHtml}
+          <a href="#contact" class="nav__mobile-cta btn-primary">Kom i gang</a>
+        </div>
+      </div>`bsite v2.0
  * Professional Obsidian-inspired navigation with advanced glassmorphism
  * 
  * @param {Object} props - Component properties
@@ -39,32 +77,121 @@ export function render({
         </button>
       </div>
       
+      <script>
+        // Enhanced navigation with pill-shaped groups
+        (function() {
+          const nav = document.getElementById('main-navigation');
+          const mobileToggle = document.getElementById('nav-toggle');
+          const mobileMenu = document.getElementById('nav-menu');
+          let lastScrollY = window.scrollY;
+          
+          // Mobile menu toggle
+          if (mobileToggle && mobileMenu) {
+            mobileToggle.addEventListener('click', function() {
+              mobileToggle.classList.toggle('active');
+              mobileMenu.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking links
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+              link.addEventListener('click', function() {
+                mobileToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+              });
+            });
+          }
+          
+          function updateNavigation() {
+            const currentScrollY = window.scrollY;
+            
+            // Add/remove scrolled class for enhanced glassmorphism
+            if (currentScrollY > 50) {
+              nav.classList.add('scrolled');
+            } else {
+              nav.classList.remove('scrolled');
+            }
+            
+            // Auto-hide navigation on scroll down (desktop only)
+            if (window.innerWidth >= 1024) {
+              if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                nav.style.transform = 'translateY(-100%)';
+              } else {
+                nav.style.transform = 'translateY(0)';
+              }
+            }
+            
+            lastScrollY = currentScrollY;
+          }
+          
+          // Throttled scroll handler for performance
+          let ticking = false;
+          function handleScroll() {
+            if (!ticking) {
+              requestAnimationFrame(() => {
+                updateNavigation();
+                ticking = false;
+              });
+              ticking = true;
+            }
+          }
+          
+          window.addEventListener('scroll', handleScroll, { passive: true });
+          
+          // Handle resize
+          window.addEventListener('resize', function() {
+            if (window.innerWidth >= 1024) {
+              mobileToggle.classList.remove('active');
+              mobileMenu.classList.remove('active');
+            }
+          });
+        })();
+      </script>
+      
       <style>
         .nav {
           position: fixed;
-          top: 0;
+          top: 20px;
           left: 0;
           right: 0;
           z-index: var(--z-fixed);
           transition: var(--transition-all);
         }
         
-        .nav__container {
-          max-width: var(--container-max-width);
+        .nav__wrapper {
+          max-width: 1280px;
           margin: 0 auto;
-          padding: var(--space-4) var(--container-padding);
+          padding: 0 var(--space-6);
           display: flex;
           align-items: center;
           justify-content: space-between;
         }
         
+        /* Navigation Groups - Pill shaped containers */
+        .nav__group {
+          display: flex;
+          align-items: center;
+          padding: var(--space-3) var(--space-6);
+          border-radius: var(--radius-full);
+          transition: var(--transition-all);
+        }
+        
+        .nav__group--left {
+          gap: var(--space-6);
+        }
+        
+        .nav__group--right {
+          gap: var(--space-4);
+        }
+        
+        /* Logo styling */
         .nav__brand {
           z-index: var(--z-fixed);
         }
         
         .nav__logo {
           font-family: var(--font-family-display);
-          font-size: var(--font-size-2xl);
+          font-size: var(--font-size-lg);
           font-weight: var(--font-weight-bold);
           color: var(--color-neutral-000);
           text-decoration: none;
@@ -75,20 +202,22 @@ export function render({
         .nav__logo:hover {
           color: var(--accent-blue);
           transform: scale(1.05);
+          text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
         }
         
-        .nav__menu {
-          display: none;
+        /* Navigation Links */
+        .nav__links {
+          display: flex;
           align-items: center;
-          gap: var(--space-8);
+          gap: var(--space-6);
         }
         
         .nav__link {
           color: rgba(255, 255, 255, 0.9);
           font-weight: var(--font-weight-medium);
-          font-size: var(--font-size-base);
+          font-size: var(--font-size-sm);
           text-decoration: none;
-          padding: var(--space-3) var(--space-4);
+          padding: var(--space-2) var(--space-3);
           border-radius: var(--radius-md);
           transition: var(--transition-all);
           position: relative;
@@ -112,24 +241,61 @@ export function render({
         
         .nav__link:hover {
           color: var(--accent-blue);
-          background: rgba(59, 130, 246, 0.1);
+          background: rgba(59, 130, 246, 0.15);
           transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
         
-        .nav__link:focus-visible {
-          outline: 2px solid var(--accent-blue);
-          outline-offset: 2px;
+        /* Right Group - Language and CTA */
+        .nav__language {
+          display: flex;
+          align-items: center;
+          gap: var(--space-1);
+          cursor: pointer;
+          padding: var(--space-2);
+          border-radius: var(--radius-md);
+          transition: var(--transition-all);
+        }
+        
+        .nav__language:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav__globe {
+          font-size: var(--font-size-sm);
+        }
+        
+        .nav__arrow {
+          font-size: var(--font-size-xs);
+          color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .nav__divider {
+          width: 1px;
+          height: 20px;
+          background: rgba(255, 255, 255, 0.2);
+          margin: 0 var(--space-2);
         }
         
         .nav__cta {
-          padding: var(--space-3) var(--space-6);
-          font-size: var(--font-size-sm);
+          color: var(--color-neutral-000);
           font-weight: var(--font-weight-medium);
-          margin-left: var(--space-4);
+          font-size: var(--font-size-sm);
+          text-decoration: none;
+          padding: var(--space-2) var(--space-3);
+          border-radius: var(--radius-md);
+          transition: var(--transition-all);
         }
         
+        .nav__cta:hover {
+          color: var(--accent-blue);
+          background: rgba(59, 130, 246, 0.1);
+          transform: translateY(-1px);
+        }
+        
+        /* Mobile Menu Toggle */
         .nav__toggle {
-          display: flex;
+          display: none;
           flex-direction: column;
           gap: 4px;
           background: none;
@@ -165,9 +331,37 @@ export function render({
           transform: rotate(-45deg) translate(6px, -6px);
         }
         
-        /* Desktop Navigation */
-        @media (min-width: 768px) {
-          .nav__menu {
+        /* Mobile Menu */
+        .nav__mobile-menu {
+          display: none;
+          position: fixed;
+          top: 80px;
+          left: var(--space-6);
+          right: var(--space-6);
+          border-radius: var(--radius-2xl);
+          flex-direction: column;
+          padding: var(--space-6);
+          gap: var(--space-4);
+          transform: translateY(-20px);
+          opacity: 0;
+          visibility: hidden;
+          transition: var(--transition-all);
+        }
+        
+        .nav__mobile-menu.active {
+          transform: translateY(0);
+          opacity: 1;
+          visibility: visible;
+        }
+        
+        .nav__mobile-cta {
+          margin-top: var(--space-4);
+          text-align: center;
+        }
+        
+        /* Desktop Navigation - Show pill groups */
+        @media (min-width: 1024px) {
+          .nav__group {
             display: flex;
           }
           
@@ -176,28 +370,38 @@ export function render({
           }
         }
         
-        /* Mobile Navigation */
-        @media (max-width: 767px) {
-          .nav__menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--background-overlay);
-            backdrop-filter: blur(var(--blur-lg));
-            -webkit-backdrop-filter: blur(var(--blur-lg));
-            flex-direction: column;
-            justify-content: center;
-            padding: var(--space-8);
-            gap: var(--space-6);
-            transform: translateX(100%);
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition-all);
+        /* Mobile Navigation - Hide pill groups, show toggle */
+        @media (max-width: 1023px) {
+          .nav__group {
+            display: none;
           }
           
-          .nav__menu.active {
+          .nav__toggle {
+            display: flex;
+          }
+          
+          .nav__mobile-menu {
+            display: flex;
+          }
+          
+          .nav__wrapper {
+            justify-content: flex-end;
+            padding: 0 var(--space-4);
+          }
+        }
+        
+        /* Tablet adjustments */
+        @media (max-width: 768px) {
+          .nav {
+            top: var(--space-4);
+          }
+          
+          .nav__mobile-menu {
+            top: 70px;
+            left: var(--space-4);
+            right: var(--space-4);
+          }
+        }
             display: flex;
             transform: translateX(0);
             opacity: 1;

@@ -288,32 +288,60 @@ export function render({
           border: 1px solid rgba(255, 255, 255, 0.1);
           border-radius: var(--radius-2xl);
           padding: var(--space-8);
-          transition: var(--transition-all);
+          transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           overflow: hidden;
           opacity: 0;
           transform: translateY(40px);
           animation: slideInScale 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
         
-        .service-card:hover {
-          transform: translateY(-8px) scale(1.02);
-          border-color: rgba(255, 255, 255, 0.2);
-          background: rgba(255, 255, 255, 0.1);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        .service-card::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: var(--radius-2xl);
+          padding: 1px;
+          background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(59,130,246,0.2), rgba(139,92,246,0.2));
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask-composite: xor;
+          opacity: 0;
+          transition: opacity 0.4s ease;
         }
         
-        /* Gradient Overlay */
+        .service-card:hover::before {
+          opacity: 1;
+        }
+        
+        .service-card:hover {
+          transform: translateY(-12px) scale(1.03);
+          border-color: rgba(255, 255, 255, 0.25);
+          background: rgba(255, 255, 255, 0.12);
+          box-shadow: 
+            0 25px 50px rgba(0, 0, 0, 0.4),
+            0 0 0 1px rgba(255, 255, 255, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+          backdrop-filter: blur(25px) saturate(180%);
+        }
+        
+        /* Gradient Overlay - Enhanced shimmer effect */
         .service-card__gradient {
           position: absolute;
           inset: 0;
           background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
           opacity: 0;
-          transition: opacity 0.5s ease;
+          transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           border-radius: var(--radius-2xl);
         }
         
         .service-card:hover .service-card__gradient {
-          opacity: 0.05;
+          opacity: 0.08;
+          animation: shimmer 2s ease-in-out infinite;
+        }
+        
+        /* Shimmer animation */
+        @keyframes shimmer {
+          0%, 100% { opacity: 0.08; }
+          50% { opacity: 0.15; }
         }
         
         /* Icon Container */
@@ -342,8 +370,12 @@ export function render({
         }
         
         .service-card:hover .service-card__icon {
-          transform: scale(1.1) rotate(5deg);
-          box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+          transform: scale(1.15) rotate(8deg);
+          box-shadow: 
+            0 20px 40px rgba(59, 130, 246, 0.6),
+            0 0 30px rgba(59, 130, 246, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+          background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-green));
         }
         
         /* Floating Particles */

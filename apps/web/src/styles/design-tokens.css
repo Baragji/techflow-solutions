@@ -123,11 +123,17 @@
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
 
-  /* Transitions */
+  /* Transitions - Performance optimized */
   --transition-fast: 150ms ease-out;
   --transition-normal: 250ms ease-out;
   --transition-slow: 350ms ease-out;
-  --transition-all: all 0.3s ease;
+  --transition-all: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Blur levels for glassmorphism */
+  --blur-sm: blur(4px);
+  --blur-md: blur(12px);
+  --blur-lg: blur(20px);
+  --blur-xl: blur(25px);
 
   /* Backdrop Blur */
   --blur-sm: 8px;

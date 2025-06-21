@@ -108,11 +108,13 @@ export function render({
           overflow: hidden;
         }
         
-        /* Cinematic Background - Real Image */
+        /* Cinematic Background - Real Image with WebP optimization */
         .hero__background {
           position: absolute;
           inset: 0;
-          background-image: url('/images/obsidian-bg.jpg');
+          background-image: 
+            url('/images/obsidian-bg.webp'),
+            url('/images/obsidian-bg.jpg');
           background-size: cover;
           background-position: center;
           background-attachment: fixed;
