@@ -13,7 +13,8 @@ export function render({
   title = "Hvor",
   highlights = ["ambition", "møder", "ekspertise"],
   subtitle = "Vi transformerer digitale muligheder til målbare forretningsresultater",
-  description = "Gennem strategisk digital markedsføring og datadriven indsigt hjælper vi virksomheder med at opnå bæredygtig vækst."
+  description = "Gennem strategisk digital markedsføring og datadriven indsigt hjælper vi virksomheder med at opnå bæredygtig vækst.",
+  basePath = "/"
 } = {}) {
   
   const heroWords = [title, ...highlights];
@@ -88,7 +89,7 @@ export function render({
         .hero__background {
           position: absolute;
           inset: 0;
-          background-image: url('/images/obsidian-bg.jpg');
+          background-image: url('${basePath}images/obsidian-bg.jpg');
           background-size: cover;
           background-position: center;
           background-attachment: fixed;
