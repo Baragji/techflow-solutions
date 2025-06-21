@@ -1,0 +1,17 @@
+{
+  "name": "@techrix/hero",
+  "version": "1.0.0",
+  "description": "TechRix Hero component - micro-service",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "scripts": {
+    "dev": "echo 'Hero component ready for development'",
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": ["hero", "component", "techrix"],
+  "author": "TechRix",
+  "license": "MIT"
+}

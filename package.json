@@ -1,0 +1,40 @@
+{
+  "name": "techrix-website",
+  "version": "1.0.0",
+  "description": "TechRix Website - Rebuilt with Astro and micro-service architecture",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/web",
+    "build": "npm run build --workspace=apps/web",
+    "preview": "npm run preview --workspace=apps/web",
+    "lint": "eslint . --ext .js,.ts,.astro",
+    "format": "prettier --write .",
+    "docs:dev": "cd docs && mkdocs serve",
+    "docs:build": "cd docs && mkdocs build"
+  },
+  "engines": {
+    "node": ">=20.11.0",
+    "npm": ">=10.0.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-astro": "^1.0.0",
+    "prettier": "^3.0.0",
+    "prettier-plugin-astro": "^0.14.0"
+  },
+  "keywords": [
+    "astro",
+    "static-site",
+    "micro-services",
+    "performance"
+  ],
+  "author": "TechRix",
+  "license": "MIT"
+}

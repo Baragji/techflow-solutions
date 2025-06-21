@@ -1,0 +1,25 @@
+# TechRix Website - Tool Versions Lock File
+# Generated: 2025-01-27
+# Purpose: Lock all tool versions for consistent development environment
+
+nodejs:
+  lts: "20.11.x"
+  current: "22.x"
+  
+npm: "10.x"
+
+build_tools:
+  astro: "4.x"
+  
+dev_tools:
+  prettier: "3.x"
+  eslint: "9.x"
+  
+documentation:
+  python: "3.12.x"
+  mkdocs: ">=1.6"
+  mkdocs_material: ">=9.5"
+
+ci_tools:
+  lighthouse_ci: "latest"
+  github_actions: "v4"

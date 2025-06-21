@@ -1,0 +1,76 @@
+site_name: TechRix Website Documentation
+site_description: Internal documentation for TechRix website rebuild
+site_author: TechRix Team
+site_url: https://docs.techrix.dk
+
+# Repository
+repo_name: techrix/website
+repo_url: https://github.com/techrix/website
+
+# Configuration
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+
+# Navigation
+nav:
+  - Home: index.md
+  - Architecture:
+    - Overview: architecture/overview.md
+    - Micro-services: architecture/micro-services.md
+    - Design Tokens: architecture/design-tokens.md
+  - Components:
+    - Hero: components/hero.md
+    - Navigation: components/navigation.md
+    - Services: components/services.md
+    - About: components/about.md
+    - Contact: components/contact.md
+    - Footer: components/footer.md
+  - Development:
+    - Getting Started: development/getting-started.md
+    - Build Process: development/build-process.md
+    - Testing: development/testing.md
+  - ADRs:
+    - ADR-001: adrs/001-architecture-decision.md
+    - ADR-002: adrs/002-design-tokens.md
+    - ADR-003: adrs/003-micro-services.md
+
+# Plugins
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true

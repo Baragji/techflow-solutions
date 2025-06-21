@@ -1,0 +1,19 @@
+{
+  "name": "@techrix/web",
+  "version": "1.0.0",
+  "description": "TechRix main website built with Astro",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@techrix/navigation",
+  "version": "1.0.0",
+  "description": "TechRix Navigation component - micro-service",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "scripts": {
+    "dev": "echo 'Navigation component ready for development'",
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": ["navigation", "component", "techrix"],
+  "author": "TechRix",
+  "license": "MIT"
+}
