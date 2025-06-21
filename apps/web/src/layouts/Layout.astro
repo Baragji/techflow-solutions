@@ -5,6 +5,9 @@ export interface Props {
 }
 
 const { title, description = "TechRix - Vi skaber digitale løsninger der driver din virksomhed fremad" } = Astro.props;
+
+// Import global styles
+import '../styles/global.css';
 ---
 
 <!DOCTYPE html>
@@ -33,9 +36,6 @@ const { title, description = "TechRix - Vi skaber digitale løsninger der driver
     <!-- Preload critical images for LCP optimization -->
     <link rel="preload" as="image" href="/images/obsidian-bg.webp" />
     <link rel="preload" as="image" href="/images/obsidian-bg.jpg" />
-    
-    <!-- Import global styles -->
-    <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
   <body>
     <slot />

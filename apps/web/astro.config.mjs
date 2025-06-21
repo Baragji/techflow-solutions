@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://baragji.github.io',
+  site: 'https://baragji.github.io/techflow-solutions',
   base: '/techflow-solutions',
   output: 'static',
   build: {
@@ -11,7 +11,11 @@ export default defineConfig({
   vite: {
     css: {
       devSourcemap: true
+    },
+    build: {
+      assetsDir: 'assets'
     }
   },
-  compressHTML: true
+  compressHTML: true,
+  trailingSlash: 'never'
 });
